@@ -139,7 +139,7 @@ function openwin11(){
 			</div>
 			<div class="app-icon red">
 				<a 
-					href="javascript:openwin1();">
+					href="javascript:openwin1();">   
 					<i class="fa fa-user-secret"></i>操作员
 				</a>
 			</div>
