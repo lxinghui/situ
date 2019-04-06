@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import annotation.RedisCache;
 import entity.Activity;
 import entity.User;
 import mapper.Activity_Mapper;
@@ -61,9 +62,16 @@ public class ActivityServiceImpl extends Basic_ServiceImpl<Activity> implements 
 		}
 	}
 
+	
 	public int getLastid() {
 
 		return mapper.getLastid();
 	}
-
+	
+	@Override
+	@RedisCache(type=Activity.class,expire=5000,fieldKey="#id")
+	public Activity selectById(Integer id) {
+		return super.selectById(id);
+	}
+	
 }

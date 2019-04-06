@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 	<title>思途实训</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,9 +12,10 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="css/font.css">
+     <link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/xadmin.css">
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script src="lib/layui/layui.js" charset="utf-8"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="js/xadmin.js"></script>
 <script type="text/javascript">
 var a=0;
@@ -70,26 +72,38 @@ $(document).ready(function(){
 <body class="login-bg">
     
     <div class="login layui-anim layui-anim-up">
-        <div class="message">思途实训</div>
+        <div class="message">实训管理系统</div>
         <div id="darkbannerwrap"></div>
          <div class="formheader">
                      <div class="student action">用户登录</div><div class="teacher">教师登录</div>
                 </div>
               <form class="studentlogin validate">
                     <input type="hidden" value="student" name="type"/>
-                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" />
-                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" />
-                    <input type="text"  name="code" class="form-control" style="width:180px;height:30px;display: inline;" placeholder="验证码" />
+                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" /><br>
+                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" /><br>
+                    <div class="form-group clearfix">
+                    <div class="code-input pull-left">
+										<input type="text" value="" autocomplete="off"  style="width:340px;" class="form-control uname"placeholder="验证码" name="code">
+									</div>
+									<div class="code-img pull-right">
                     <img src="imgCode" onclick="changed(this);" style="height: 30px;">
-                <button class="btn btn-success btn-block studentbtn" type="button" style="width: 200px;height:50px;margin-left: 70px">学生登录</button>
+                    </div>
+                    </div>
+                <button class="login-btn tran5 form-control studentbtn" type="button" style="width: 200px;height:50px;margin-left: 70px">学生登录</button>
                  </form>
                  <form class="teacherlogin action1">
                     <input type="hidden" value="teacher" name="type"/>
-                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" />
-                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" />
-                    <input type="text"  name="code" class="form-control" style="width:180px;height:30px;display: inline;" placeholder="验证码" />
+                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" /><br>
+                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" /><br>
+                       <div class="form-group clearfix">
+                    <div class="code-input pull-left">
+										<input type="text" value="" autocomplete="off"  style="width:340px;" class="form-control uname"placeholder="验证码" name="code">
+									</div>
+									<div class="code-img pull-right">
                     <img src="imgCode" onclick="changed(this);" style="height: 30px;">
-                <button class="btn btn-success btn-block teacherbtn" type="button" style="width: 200px;height:50px;margin-left: 70px">教师登录</button>
+                    </div>
+                    </div>
+                <button class="login-btn tran5 form-control teacherbtn" type="button" style="width: 200px;height:50px;margin-left: 70px">教师登录</button>
                  </form>
     </div>
 <script type="text/javascript">
@@ -115,7 +129,7 @@ $(document).ready(function(){
 					alert("该账号已过期");
 					window.location.reload();
 				}else{
-					window.location.href="index.jsp";
+					window.location.href="toindex";
 				}
 			}
 		 }); 

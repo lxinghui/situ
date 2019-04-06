@@ -8,7 +8,7 @@ import utils.SearchInfo;
 public interface Basic_Service <T>{
 	public List<T> select(SearchInfo info);
     
-	public T selectById(int id);
+	public T selectById(Integer id);
     
 	public void insert(T t);
 	

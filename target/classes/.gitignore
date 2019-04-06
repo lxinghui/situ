@@ -1,7 +1,3 @@
 /controller/
-/entity/
-/mapper/
-/service/
-/serviceImpl/
-/springmvc-servlet.xml
 /utils/
+/rule/

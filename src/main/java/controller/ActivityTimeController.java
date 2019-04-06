@@ -111,4 +111,6 @@ public class ActivityTimeController extends Basic_Controller<ActivityTime> {
 		List<ActivityTime> list= service.getDate(new SearchInfo(" WHERE activity_id = "+id, false));
 		return list;
 	}
+	
+
 }

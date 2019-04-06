@@ -3,6 +3,7 @@
 
 <c:import url="/Model/list_head.jsp" ></c:import>
 <head>
+
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
 <script  type="text/javascript"   src="js/H-ui.admin.js"></script>
@@ -25,7 +26,7 @@ $(".sselect").val(select); //servlet回来的select
 $(".sinput").css("display", "none").prop("disabled", "disabled");
 $($(".sinput")[select]).css("display", "inline").removeAttr("disabled").val(txt);
 });
-function fresh() {
+function fresh() {  
 		location.href = "activities/index1?pageno="+pageno;
 	}
 	function returnobject(o) {

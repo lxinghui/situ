@@ -90,6 +90,10 @@ function openwin10(){
 function openwin11(){
 	show("toChangePass",400,300)
 }
+
+function openCal(){
+	show("toCalendar",1223,644)
+}
 </script>
 </head>
 <body>
@@ -103,7 +107,7 @@ function openwin11(){
 			<a  class="start-menu" id="full"><i class="fa fa-bars"></i></a>
 		</div>
 		<div class="nav-apps"></div>
-		<div class="clock">
+		<div class="clock" onclick="javascript:openCal();">
 			<ul>
 				<li id="hours"></li>
 				<li id="point">:</li>
@@ -119,10 +123,7 @@ function openwin11(){
 			<ul>
 				<ul>
 				<li><a  onclick="javascript:openwin11();"><i class="fa fa-cogs"></i></a></li>
-				<li><a  onclick="openApp('users', 'users', 'users.html', 'fa-users')"><i class="fa fa-users"></i></a></li>
-				<li><a  onclick="openApp('time', 'Time preferences', 'time.html', 'fa-clock-o')"><i class="fa fa-clock-o"></i></a></li>
-				<li><a><i class="fa fa-file-image-o"></i></a></li>
-				<li><a ><i class="fa fa-sign-out"></i></a></li>
+		
 			</ul>
 			</ul>
 		</div>

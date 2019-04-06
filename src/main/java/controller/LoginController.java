@@ -29,6 +29,7 @@ public class LoginController {
 		session.removeAttribute("user");
 		session.removeAttribute("power");
 		if(type.equals("teacher")) {
+			
 			if(session.getAttribute("randomCode").toString().equalsIgnoreCase(code)) {
 				Operator o = new Operator();
 				o.setNiki(niki);

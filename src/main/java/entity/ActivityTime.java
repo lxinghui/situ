@@ -22,7 +22,24 @@ public class ActivityTime {
 	public String o_name;
 	public int status;
 	public String comments;
-
+    public String[] getcal_time1() {
+    	return time1.split("-");
+    }
+    public String[] getcal_time2() {
+    	return time2.split("-");
+    }
+    public String[] getcal_time3() {
+    	return time3.split("-");
+    }
+    public String[] getcal_time4() {
+    	return time4.split("-");
+    }
+    public String[] getcal_time5() {
+    	return time5.split("-");
+    }
+    public String[] getcal_time6() {
+    	return time6.split("-");
+    }
 	public String getTimeinfo() throws ParseException {
 		String str = "";
 		String str1 = "";

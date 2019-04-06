@@ -1,6 +1,8 @@
 package entity;
 
-public class Activity {
+import java.io.Serializable;
+
+public class Activity implements Serializable{
 	
 	public static String[] statusstatus = { "正常", "取消"};
 	public static String[] typestatus = { "实训", "宣讲","比赛"};
@@ -29,6 +31,10 @@ public class Activity {
 	public String c_name;
 	public int status;
 	public String comments;
+	public String[] getDate() {
+		return dateinfo.split("-");
+	}
+	
 	public String getRoominfo() {
 		return school+college;
 	}

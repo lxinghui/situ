@@ -8,7 +8,7 @@ html, body {
 	overflow:hidden;
 }
 body {
-	background: url("../img/wallpapers/free-backgrounds-23.jpg") bottom;
+	background: url("../img/bg.png") bottom;
 	background-size: 100% 100%;
 	font-family: 'Raleway','Droid Sans', sans-serif;
  }

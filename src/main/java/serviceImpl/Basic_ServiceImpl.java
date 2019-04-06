@@ -7,14 +7,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import annotation.RedisCache;
+import entity.Activity;
 import mapper.BaicsMapper;
 import service.Basic_Service;
+import utils.GenericSuperclassUtil;
 import utils.SearchInfo;
 
 @Service
 public class Basic_ServiceImpl<T> implements Basic_Service<T> {
+	
 	BaicsMapper bm;
-
 	private Method getMethod(String mname, Class... ts) throws Exception {
 		Field mapperf = this.getClass().getDeclaredField("mapper");
 		mapperf.setAccessible(true);
@@ -32,8 +35,8 @@ public class Basic_ServiceImpl<T> implements Basic_Service<T> {
 		}
 		return null;
 	}
-
-	public T selectById(int id) {
+	
+	public T selectById(Integer id) {
 		try {
 			return (T) getMethod("selectById", int.class).invoke(bm, id);
 		} catch (Exception e) {
@@ -91,8 +94,15 @@ public class Basic_ServiceImpl<T> implements Basic_Service<T> {
 		}
 		return -1;
 	}
+    
+	Foo<T> foo = new Foo<T>(){};
 
-
-
-
+	abstract class Foo<T>{
+	    public Class<T> getTClass()
+	    {
+	        Class<T> tClass = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	        return tClass;
+	    }
+	}
+  
 }

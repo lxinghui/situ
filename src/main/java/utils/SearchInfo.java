@@ -1,5 +1,9 @@
 package utils;
 
+import java.util.HashMap;
+
+import org.springframework.ui.ModelMap;
+
 public class SearchInfo {
 	private int page = 1;
 	public int size;
@@ -83,6 +87,7 @@ public class SearchInfo {
 		}
 		
 	}
+	
 	
 	
 }
