@@ -43,6 +43,10 @@ public interface Activity_Mapper extends BaicsMapper{
 	@Update("update Activity set name=#{name} ${where}")
 	public void updateAll(Activity a);
 	
+	@Update("update Activity set status=#{status} "
+			+ " where id=#{id}")
+	public void changeStatus(Activity a);
+	
 	@Delete("delete from Activity where id=#{id}")
 	public void delete(int id); 
 	

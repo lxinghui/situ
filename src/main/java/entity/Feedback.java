@@ -33,7 +33,6 @@ public class Feedback {
 	private int status;
 	private String a_name;
 	private String u_name;
-
 	
 	public String getDate() {
 		return date;

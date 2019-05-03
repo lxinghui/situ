@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Activity implements Serializable{
 	
-	public static String[] statusstatus = { "正常", "取消"};
+	public static String[] statusstatus = { "正常", "取消","已结束"};
 	public static String[] typestatus = { "实训", "宣讲","比赛"};
 	public static String[] facility = { "投影", "话筒","插排"};
 	public int id;
@@ -194,4 +194,14 @@ public class Activity implements Serializable{
 		this.comments = comments;
 	}
 	
+	
+	/*
+	 * 检查是否已结束
+	 */
+	public boolean check_status() {
+		if(this.status !=2) {
+			return true;
+		}
+		return false;
+	}
 }

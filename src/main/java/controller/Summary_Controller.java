@@ -3,6 +3,7 @@ package controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +13,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import entity.Activity;
+import entity.ActivityTime;
+import entity.Checkwork;
 import entity.Summary;
+import entity.User;
 import service.ActivityService;
 import service.OperatorService;
 import service.Summary_Service;
+import service.UserService;
 import utils.JsonInfo;
 import utils.SearchInfo;
 
@@ -29,7 +34,8 @@ Summary_Service service;
 ActivityService aservice;
 @Resource(name = "Operator_ServiceImpl")
 OperatorService oservice;
-
+@Resource(name = "User_ServiceImpl")
+UserService uservice;
 
 @RequestMapping("index1")
 public String index(Integer select,Integer pageno, SearchInfo info, String txt, ModelMap m, HttpServletRequest req)throws Exception {
@@ -154,6 +160,7 @@ m.put("xstatus", Summary.xstatues);
 		o.setOption(str);
 		return super.update_json(o, m, req);
 	}
+
 
 
 }

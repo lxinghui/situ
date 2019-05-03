@@ -7,4 +7,5 @@ public interface FeedbackService extends Basic_Service<Feedback>{
 	public int getCount();
 	public void updateStatus(Feedback t);
 	public void updateresult(Feedback t);
+	void insert(Feedback t);
 }

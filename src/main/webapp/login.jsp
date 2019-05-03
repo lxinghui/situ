@@ -79,8 +79,8 @@ $(document).ready(function(){
                 </div>
               <form class="studentlogin validate">
                     <input type="hidden" value="student" name="type"/>
-                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" /><br>
-                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" /><br>
+                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" value="xxgg" /><br>
+                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" value="123"/><br>
                     <div class="form-group clearfix">
                     <div class="code-input pull-left">
 										<input type="text" value="" autocomplete="off"  style="width:340px;" class="form-control uname"placeholder="验证码" name="code">
@@ -93,8 +93,8 @@ $(document).ready(function(){
                  </form>
                  <form class="teacherlogin action1">
                     <input type="hidden" value="teacher" name="type"/>
-                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" /><br>
-                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" /><br>
+                    <input type="text" name="niki" class="form-control uname" placeholder="用户名" value="17863902943"/><br>
+                    <input type="password" name="pass" class="form-control pword m-b" placeholder="密码" value="123" /><br>
                        <div class="form-group clearfix">
                     <div class="code-input pull-left">
 										<input type="text" value="" autocomplete="off"  style="width:340px;" class="form-control uname"placeholder="验证码" name="code">

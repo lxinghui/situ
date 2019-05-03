@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link href="css/jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/default.css">
+<link rel="stylesheet" type="text/css" href="css/font_icon.css">
+<link rel="stylesheet"  type="text/css"href="font_icon/iconfont.css">
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -32,6 +34,8 @@
 <script type="text/javascript" src="js/mylayer.js"></script>
 <script type="text/javascript" src="fullcalendar/jquery-ui.custom.min.js"></script>
 <script src='fullcalendar/fullcalendar.min.js'></script>
+<script  type="text/javascript"   src="js/H-ui.admin.js"></script>
+<link rel="stylesheet" type="text/css" href="js/layer/skin/layer.css" />
 <style type="text/css">
 
 	#calendar {
@@ -42,6 +46,9 @@
 </style>
 </head>
 <script type="text/javascript">
+
+var power = "${sessionScope.power}";
+var userid = "${sessionScope.id}";
 function show(url,w,h){
 	layer.open({
 		type:2,
@@ -52,47 +59,62 @@ function show(url,w,h){
 	});
 }
 function openwin(){
-	show("schools/index1",600,400);
+	layer_show("学校","schools/index1",600,400);
 	}
 	
 function openwin1(){
-	show("operators/index1",940,560);
+	layer_show("人员","operators/index1",940,560);
 	}
 function openwin2(){
-	show("users/index1",1262,630);
+	layer_show("学生","users/index1",1262,630);
 	}
 function openwin3(){
-	show("colleges/index1",600,400);
+	layer_show("学院","colleges/index1",600,400);
 	}
 function openwin4(){
-	show("activities/index1",1223,644);
+	if(power=='3'||power=='4'){
+		layer_show("活动详情","activities/index1",1223,644);
+	    }
+	if(power=='1'||power=='2'){
+		layer_show("活动详情","activities/index1?user_id="+userid,1223,644);
+		}
 	}
 function openwin5(){
-	show("times/index1",1223,644);
+	layer_show("活动时间","times/index1",1223,644);
 	}
 function openwin6(){
-	show("feedback/index1",1200,600);
+	layer_show("反馈详情","feedback/index1",1200,600);
 	}
 function openwin7(){
-	show("groups/index1",1223,644);
+	layer_show("分组详情","groups/index1",1223,644);
 	}
 function openwin8(){
-	show("checkwork/index1",1223,644);
+	layer_show("考勤详情","checkwork/index1",1223,644);
 	}
 
 function openwin9(){
-	show("evaluations/index1",1223,644)
+	layer_show("测评详情","evaluations/index1",1223,644)
 }
 function openwin10(){
-	show("summarys/index1",1223,644)
+	layer_show("活动总结","summarys/index1",1223,644)
 }
 
 function openwin11(){
-	show("toChangePass",400,300)
+	layer_show("更改密码","toChangePass",400,300)
+}
+
+function openwin12(){
+	var user_id = ""+${sessionScope.id};
+	layer_show("考勤详情","checkwork/studentindex?user_id="+user_id,1223,644)
+}
+
+function openwin13(){
+	var user_id = ""+${sessionScope.id};
+	layer_show("反馈详情","feedbacks/studentindex?user_id="+user_id,1223,644)
 }
 
 function openCal(){
-	show("toCalendar",1223,644)
+	layer_show("活动日历","toCalendar",1223,644)
 }
 </script>
 </head>
@@ -158,15 +180,29 @@ function openCal(){
 				</a>
 			</div>
 			<div class="app-icon red">
+			  <c:if test="${sessionScope.power==4}">
 				<a 
 					href="javascript:openwin8();">
 					<i class="fa fa-clock-o"></i>学生考勤
 				</a>
+		        </c:if>
+		        <c:if test="${sessionScope.power==3}">
+				<a 
+					href="javascript:openwin8();">
+					<i class="fa fa-clock-o"></i>学生考勤
+				</a>
+		        </c:if>
+		        <c:if test="${sessionScope.power==1||sessionScope.power==2}">
+				<a 
+					href="javascript:openwin12();">
+					<i class="iconfont  icon-gerenxiangmu background_blue color_blue size_50"></i>学生考勤
+				</a>
+		        </c:if>
 			</div>
 			<div class="app-icon green">
 				<a 
-					href="javascript:openwin10();">
-					<i class="fa fa-bar-chart"></i>实训总结
+					href="javascript:openwin13();">
+					<i class="fa fa-bar-chart"></i>学生反馈
 				</a>
 			</div>
 		</div>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import entity.ActivityTime;
 import mapper.ActivityTime_Mapper;
@@ -22,4 +23,6 @@ public int getCount() {
 public List<ActivityTime> getDate(SearchInfo info) {
 	return mapper.getDate(info);
 }
+
+
 }

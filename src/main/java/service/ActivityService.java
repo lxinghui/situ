@@ -11,4 +11,6 @@ public interface ActivityService extends Basic_Service<Activity>{
 	public void addOrDelUsers(Activity a);
 	
 	public int getLastid();
+	
+	public void changeStatus(Activity a);
 }

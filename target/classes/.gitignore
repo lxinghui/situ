@@ -1,3 +1,7 @@
 /controller/
 /utils/
 /rule/
+/mapper/
+/serviceImpl/
+/service/
+/entity/

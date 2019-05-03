@@ -73,5 +73,9 @@ public class ActivityServiceImpl extends Basic_ServiceImpl<Activity> implements 
 	public Activity selectById(Integer id) {
 		return super.selectById(id);
 	}
+
+	public void changeStatus(Activity a) {
+		mapper.changeStatus(a);
+	}
 	
 }

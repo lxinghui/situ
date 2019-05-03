@@ -24,4 +24,10 @@ public void updateStatus(Feedback t) {
 public void updateresult(Feedback t) {
 	 mapper.updateresult(t);
 }
+
+@Override
+	public void insert(Feedback t) {
+	
+		mapper.first_insert(t);
+	}
 }

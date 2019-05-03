@@ -10,6 +10,7 @@
 <script>
 	var pageno = ${requestScope.search.page}
 	var txt = ${requestScope.txt};
+	var userid = ${sessionScope.id};
 	var a_id = "${requestScope.a_id}";
 	$(function() {
 		if (a_id != "") {
@@ -45,7 +46,13 @@
 	function openfeedback(id, date) {
 		layer_show("当天反馈", "Feedback/index1?activity_id=" + id+ "&&date=" + date,920, 500);
 	}
-
+	function openstudent_feedback(id, date) {
+		layer_show("当天反馈", "feedbacks/edit1?date=" + date,670,
+				500);
+	}
+	function openstudent_checkwork(id, date) {
+		layer_show("当天考勤", "checkwork/studentindex?user_id="+userid, 920, 500);
+	}
 	function openreport(id, date) {
 		layer_show("当天日报", "report/index1?activity_id=" + id + "&&date=" + date, 670,
 				500);
@@ -103,8 +110,18 @@
 					<td>${row.o_name}</td>
 					<td>${row.status_Name}</td>
 					<td class="bigtext">${row.comments}</td>
-					<td><a
+					<td><c:if test="${sessionScope.power==3}"><a
 						href="javascript:openfeedback(${row.activity_id},'${row.date}');">反馈</a>
+						</c:if>
+						<c:if test="${sessionScope.power==4}"><a
+						href="javascript:openfeedback(${row.activity_id},'${row.date}');">反馈</a>
+						</c:if>
+			            <c:if test="${sessionScope.power==1}"><a
+						href="javascript:openstudent_feedback(${row.activity_id},'${row.date}');">反馈</a>
+						</c:if>
+						<c:if test="${sessionScope.power==2}"><a
+						href="javascript:openstudent_feedback(${row.activity_id},'${row.date}');">反馈</a>
+						</c:if>
 						<c:if test="${sessionScope.power==3}">
 						<a href="javascript:openmarket(${row.activity_id},'${row.date}');">市场</a>
 						</c:if>
@@ -116,8 +133,13 @@
 						</c:if>
 						<c:if test="${sessionScope.power==4}">
 						<a href="javascript:openedit(${row.id});">修改</a>
-						</c:if>  <a
-						href="javascript:opencheckwork(${row.activity_id},'${row.date}');">考勤</a>
+						</c:if> 
+						<c:if test="${sessionScope.power==3||sessionScope.power==4}">
+						 <a href="javascript:opencheckwork(${row.activity_id},'${row.date}');">考勤</a>
+						 </c:if>
+						 <c:if test="${sessionScope.power==1||sessionScope.power==2}">
+						 <a href="javascript:openstudent_checkwork(${row.activity_id},'${row.date}');">考勤</a>
+						 </c:if>
 						<c:if test="${sessionScope.power==3}">
 						<a href="javascript:openreport(${row.activity_id},'${row.date}');">日报</a>
 						</c:if>

@@ -28,7 +28,7 @@ import utils.SearchInfo;
 
 @Controller
 @RequestMapping("checkwork")
-public class CheckController extends Basic_Controller<Checkwork> {
+public class CheckworkController extends Basic_Controller<Checkwork> {
 	@Resource(name = "CheckworkServiceImpl")
 	CheckworkService service;
 	@Resource(name = "User_ServiceImpl")
@@ -43,12 +43,13 @@ public class CheckController extends Basic_Controller<Checkwork> {
 	Checkwork o = new Checkwork();
 
 	@RequestMapping("index1")
-	public String index1(SearchInfo info, Integer activity_id, String date, ModelMap m, Integer pageno,
+	public String index1(Integer user_id,SearchInfo info, Integer activity_id, String date, ModelMap m, Integer pageno,
 			HttpServletRequest req) throws Exception {
 		String where = " ";
 		if (pageno != null) {
 			info.setPage(pageno);
 		}
+	
 		List<Activity> alist = aservice.select(new SearchInfo("", false));
 		m.put("activitylist", alist);
 		if (activity_id == null) {
@@ -66,8 +67,11 @@ public class CheckController extends Basic_Controller<Checkwork> {
 		// 活动没创建时间的话。。。
 		// 如果有考勤 则显示
 		if (activity_id != null && date.length() > 0) {
-			System.out.println("date:" + date);
+			
 			where = " where c.activity_id  = " + activity_id + "  and c.date='" + date + " '";
+			if(user_id!=null) {
+				where = " where c.activity_id  = " + activity_id + "and c.user_id="+user_id+"  and c.date='" + date + " '";
+			}
 		}
 
 		List<Activity> ac_list = aservice.select(new SearchInfo(" where a.id=" + activity_id, false));
@@ -78,7 +82,6 @@ public class CheckController extends Basic_Controller<Checkwork> {
 					.select(new SearchInfo(" where u.id in (" + ids + ") ", false));// 活动所有用户
 			List<Checkwork> wlist = service.select(new SearchInfo(" where c.activity_id  = " + activity_id
 					+ "  and c.date='" + date + " ' " + " and  c.user_id in (" + ids + ")", false));
-			System.out.println("wlist:" + wlist.size());
 			if (wlist.size() == 0) {
 				for (User u : ulist) {
 					o.setActivity_id(activity_id);
@@ -207,5 +210,28 @@ public class CheckController extends Basic_Controller<Checkwork> {
 
 		return super.update_json(c, m, req);
 	}
+	
+	
+	/*
+	 * 学生查看自己的考勤信息
+	 * 班级 课程 讲师 学术名称 电话 
+     * 班级 学生名称 时间
+     * 日期 早/午/晚 备注
+	 */
+	
 
+	@RequestMapping("/studentindex")
+	public String studentindex(ModelMap map, Integer user_id,String date) {
+        User user = uservice.selectById(user_id);
+        int activity_id=user.getActivity_id();
+		List<Checkwork> clist = service.select(new SearchInfo(" where c.activity_id  = " + activity_id
+				+  " and  c.user_id = " + user_id , false));
+		List<ActivityTime> dlist = tservice.select(new SearchInfo("where t.activity_id = " + activity_id, false));
+		map.put("clist", clist);
+        map.put("activity", aservice.selectById(activity_id));
+		map.put("user",user);
+		return "Checkwork/studentindex";
+	}
+
+     
 }

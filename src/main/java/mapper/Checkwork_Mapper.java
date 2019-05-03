@@ -41,4 +41,5 @@ public interface Checkwork_Mapper extends BaicsMapper{
 	@Select("select count(*) from activity_Checkwork ")
 	public int getCount();
 
+	
 }

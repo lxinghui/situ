@@ -54,12 +54,12 @@ public class ActivityController extends Basic_Controller<Activity> {
 	// }
 
 	@RequestMapping("index1")
-	public String index1(SearchInfo info, Integer select, String txt, String name, ModelMap m, Integer pageno,
+	public String index1(String user_id,SearchInfo info, Integer select, String txt, String name, ModelMap m, Integer pageno,
 			HttpServletRequest req) throws Exception {
 		if (select == null) {
 			select = 0; txt="0";
 		}
-		info = arule.beforeQueryRule(select, txt, name, pageno);
+		info = arule.beforeQueryRule(user_id,select, txt, name, pageno);
 		m.put("sourcelist", oservice.select(new SearchInfo(" ", false)));
 		m.put("chargelist", oservice.select(new SearchInfo(" ", false)));
 		m.addAttribute("select", select);

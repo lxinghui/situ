@@ -7,15 +7,24 @@ import javax.annotation.Resource;
 import org.springframework.ui.ModelMap;
 
 import service.ActivityService;
+import service.UserService;
 import utils.SearchInfo;
 import utils.SpringTool;
 
 public class ActivityRule {
 
 
-	public SearchInfo beforeQueryRule(Integer select, String txt, String name, Integer pageno) {
+	public SearchInfo beforeQueryRule(String user_id,Integer select, String txt, String name, Integer pageno) {
 		
 		String where="";
+		if(user_id!=null) {
+			int id =Integer.valueOf(user_id);
+			UserService uservice = (UserService) SpringTool.getBean("User_ServiceImpl");
+			int activity_id = uservice.selectById(id).getActivity_id();
+			where = "where  a.id=" +activity_id;
+		}else {
+			
+		
 		if (select == null) {
 			select = 0; txt="0";
 			where = " where a.type=" + 0;
@@ -39,6 +48,7 @@ public class ActivityRule {
 		}
 		if (name != null && name.length() > 0) {
 			where = " where name like '%" + name + "%'";
+		}
 		}
 		ActivityService aservice = (ActivityService) SpringTool.getBean("ActivityServiceImpl");
 		int size= aservice.getCount(new SearchInfo(where, false));
