@@ -76,12 +76,15 @@ public class FeedbackController extends Basic_Controller<Feedback> {
 	}
 
 	@RequestMapping("/studentindex")
-	public String studentindex(ModelMap map, Integer user_id) {
+	public String studentindex(ModelMap map, Integer user_id,String date, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		user_id = (Integer) session.getAttribute("id");
 		User user = uservice.selectById(user_id);
 		int activity_id = user.getActivity_id();
 		List<Feedback> flist = service.select(
 				new SearchInfo(" where f.activity_id  = " + activity_id + " and  f.user_id = " + user_id, false));
-		List<ActivityTime> dlist = tservice.select(new SearchInfo("where t.activity_id = " + activity_id, false));
+		List<ActivityTime> dlist = tservice.select(new SearchInfo("where t.activity_id = " + activity_id, false));	
+		map.put("datelist", dlist);
 		if (flist.size() == 0) {
 			for (ActivityTime t : dlist) {
 				o.setActivity_id(activity_id);
@@ -91,6 +94,10 @@ public class FeedbackController extends Basic_Controller<Feedback> {
 			}
 			flist = service.select(
 					new SearchInfo(" where f.activity_id  = " + activity_id + " and  f.user_id = " + user_id, false));
+		}else if(date !=null) {
+			
+			flist = service.select(
+					new SearchInfo(" where f.activity_id  = " + activity_id + " and  f.user_id = " + user_id +" and f.date = '"+date+"'", false));
 		}
 		map.put("flist", flist);
 

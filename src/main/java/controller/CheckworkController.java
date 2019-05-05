@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -221,15 +222,33 @@ public class CheckworkController extends Basic_Controller<Checkwork> {
 	
 
 	@RequestMapping("/studentindex")
-	public String studentindex(ModelMap map, Integer user_id,String date) {
-        User user = uservice.selectById(user_id);
+	public String studentindex(ModelMap map, Integer user_id,String date, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		user_id = (Integer) session.getAttribute("id");
+		User user = uservice.selectById(user_id);
         int activity_id=user.getActivity_id();
+        List<ActivityTime> dlist = tservice.select(new SearchInfo("where t.activity_id = " + activity_id, false));
 		List<Checkwork> clist = service.select(new SearchInfo(" where c.activity_id  = " + activity_id
 				+  " and  c.user_id = " + user_id , false));
-		List<ActivityTime> dlist = tservice.select(new SearchInfo("where t.activity_id = " + activity_id, false));
+		if (clist.size() == 0) {
+			for (ActivityTime t : dlist) {
+				o.setActivity_id(activity_id);
+				o.setUser_id(user_id);
+				o.setDate(t.getDate());
+				service.insert(o);
+			}
+			clist = service.select(
+					new SearchInfo(" where c.activity_id  = " + activity_id + " and  c.user_id = " + user_id, false));
+		}else if(date !=null) {
+			
+			clist = service.select(
+					new SearchInfo(" where c.activity_id  = " + activity_id + " and  c.user_id = " + user_id +" and c.date = '"+date+"'", false));
+		}
 		map.put("clist", clist);
         map.put("activity", aservice.selectById(activity_id));
-		map.put("user",user);
+		map.put("user",user);	
+		map.put("datelist", dlist);
+		
 		return "Checkwork/studentindex";
 	}
 

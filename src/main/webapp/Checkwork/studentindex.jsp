@@ -46,7 +46,7 @@ $(document).ready(function(){
         <label class="headtext">${user.tel}</label>
         <div class="headprint">打印本页</div>
 </div>
-     <form action="CheckOnWork/details" method="post">
+     <form action="checkwork/studentindex" method="post">
      <div class="searchview printhide">
      
     <label class="searchtext">班级:</label>
@@ -62,23 +62,18 @@ $(document).ready(function(){
 
 
 
-<select name="month" class="searchinput inputselect_long">
+<select name="date" class="searchinput inputselect_long">
 	
 		  
-			<option selected="selected" value="1">第一周  18-07-16至18-07-22</option>
-		
-		
-	
-		
-		
-			<option value="2">第二周  18-07-23至18-07-29</option>
-		
-	
-		
-		
-			<option value="3">第三周  18-07-30至18-08-05</option>
-		
+				<c:forEach items="${requestScope.datelist}" var="r" varStatus="v">
+					<c:if test="${r.date!=requestScope.date}">
+						<option class="op" value="${r.date}">${r.date}</option>
+					</c:if>
+					<c:if test="${r.date==requestScope.date}">
+						<option selected="selected" class="op" value="${r.date}">${r.date}</option>
+					</c:if>
 
+				</c:forEach>
 	
 </select>
 
