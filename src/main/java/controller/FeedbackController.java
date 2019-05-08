@@ -41,8 +41,9 @@ public class FeedbackController extends Basic_Controller<Feedback> {
 	Feedback o = new Feedback();
 
 	@RequestMapping("index1")
-	public String index1(SearchInfo info, Integer activity_id, ModelMap m, Integer pageno, HttpServletRequest req)
+	public String index1(SearchInfo info,String date, Integer activity_id, ModelMap m, Integer pageno, HttpServletRequest req)
 			throws Exception {
+		List<ActivityTime> dlist;
 		String where = " ";
 		if (pageno != null) {
 
@@ -53,9 +54,13 @@ public class FeedbackController extends Basic_Controller<Feedback> {
 		m.put("activitylist", alist);
 		if (activity_id == null) {
 			activity_id = alist.get(0).getId();
+			dlist = tservice.select(new SearchInfo("where t.activity_id = " + activity_id, false));
+			m.put("datelist", dlist);
 		}
-		if (activity_id != null) {
-			where = " where f.activity_id  = " + activity_id;
+		if (activity_id != null&&date !=null) {
+			dlist = tservice.select(new SearchInfo("where t.activity_id = " + activity_id, false));
+			where = " where f.activity_id  = " + activity_id + " and f.date = '"+date+"'";
+			m.put("datelist", dlist);
 		}
 
 		info.setWhere(where);
@@ -64,6 +69,7 @@ public class FeedbackController extends Basic_Controller<Feedback> {
 		m.put("list", service.select(info));
 		m.put("activity_id", activity_id);
 		m.put("search", info);
+		
 		return "Feedback/index";
 	}
 

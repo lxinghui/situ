@@ -44,7 +44,7 @@
 	}
 
 	function openfeedback(id, date) {
-		layer_show("当天反馈", "Feedback/index1?activity_id=" + id+ "&&date=" + date,920, 500);
+		layer_show("当天反馈", "feedbacks/index1?activity_id=" + id+ "&&date=" + date,920, 500);
 	}
 	function openstudent_feedback(id, date) {
 		layer_show("当天反馈", "feedbacks/edit1?date=" + date,670,

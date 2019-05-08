@@ -40,7 +40,7 @@
 
 		$.ajax
 		({
-			url:'Feedback/updateStatus',
+			url:'feedbacks/updateStatus',
 			type:'post',
 			data:{"status":0,"id":id},
 			success:function(result){
@@ -58,7 +58,7 @@
                 
         		$.ajax
         		({
-        			url:'Feedback/updateStatus',
+        			url:'feedbacks/updateStatus',
         			type:'post',
         			data:{"status":1,"id":id},
         			success:function(result){
@@ -99,7 +99,7 @@
 <body style="min-width:920px;">
 	<span class="printtitle"></span>
 
-		<form action="Feedback/index1" method="post">
+		<form action="feedbacks/index1" method="post">
 		<div class="searchview">
 		<label class="searchtext"><b>活动：</b></label> 
 				<select  name="activity_id" class="select inputinput">		
@@ -133,12 +133,12 @@
 		<thead>
 			<tr>
 				<th>姓名</th>			
-				<th>学习状态</th>
-				<th>讲师进度</th>
+				<th>讲师满意度</th>
+				<th>讲师交流情况</th>
 				<th>课堂氛围</th>
-				<th>薄弱环节</th>
-				<th>完成作业</th>
-				<th>进步程度</th>
+				<th>管理方式满意度</th>
+				<th>讲课方式满意度</th>
+				<th>作业完成情况</th>
 				<th>状态</th>
 				<th>操作</th>
 			</tr>
